@@ -58,4 +58,10 @@ router.post('/login', function (req, res, next) {
   })
 })
 
+// 退出登陆
+router.get('/logout', function (req, res, next) {
+  req.session.username = null
+  res.redirect('/login')
+})
+
 module.exports = router;

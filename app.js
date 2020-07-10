@@ -36,6 +36,7 @@ app.get('*', function (req, res, next) {
   console.log("session的信息", session, username)
   if (path != '/login' && path != '/regist') {
     if (!username) {
+      console.log('abcc')
       res.redirect('/login')
     }
   }
