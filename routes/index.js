@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
   model.connect(function (db) {
     db.collection('users').find().toArray(function (err, docs) {
       // console.log('用户查询', docs)
-      res.render('index', { username:username });
+      res.render('index', { username: username });
     })
   })
 
@@ -25,4 +25,11 @@ router.get('/regist', function (req, res, next) {
 router.get('/login', function (req, res, next) {
   res.render('login', {})
 })
+
+// 渲染写文章
+router.get('/write', function (req, res, next) {
+  var username = req.session.username || "";
+  res.render('write', { username })
+})
+
 module.exports = router;
