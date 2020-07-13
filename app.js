@@ -34,7 +34,6 @@ app.use(session({
 app.get('*', function (req, res, next) {
   var username = req.session.username
   var path = req.path
-  console.log("session的信息", session, username)
   if (path != '/login' && path != '/regist') {
     if (!username) {
       // res.redirect('/login')

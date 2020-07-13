@@ -28,7 +28,7 @@ router.get('/login', function (req, res, next) {
 
 // 渲染写文章
 router.get('/write', function (req, res, next) {
-  var username = req.session.username || "";
+  var username = req.session.username || '';
   res.render('write', { username })
 })
 

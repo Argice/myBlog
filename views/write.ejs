@@ -13,15 +13,12 @@
 
   <div class="article">
     <form action="/article/add" method="post">
-      <input type="hidden" name="id" value="<%- item.id %>">
-      <input type="hidden" name="page" value="<%- item.page %>">
-      <input type="text" name="title" placeholder="请输入文章标题" value="<%=item.title%>">
-      <textarea name="content" class="xheditor"><%- item.content %></textarea>
-      <% if (item.id) { %>
-        <input type="submit" value="修改">
-      <%} else {%>
-        <input type="submit" value="发布">
-      <%}%>
+      <input type="hidden" name="id" value="">
+      <input type="hidden" name="page" value="">
+      <input type="text" name="title" placeholder="请输入文章标题" value="">
+      <textarea name="content" class="xheditor"></textarea>
+      <input type="submit" value="发布">
+
     </form>
   </div>
 
