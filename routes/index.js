@@ -8,8 +8,8 @@ var model = require('../model');
 router.get('/', function (req, res, next) {
   var username = req.session.username;
   model.connect(function (db) {
-    db.collection('users').find().toArray(function (err, docs) {
-      // console.log('用户查询', docs)
+    db.collection('articles').find().toArray(function (err, docs) {
+      console.log('article', docs)
       res.render('index', { username: username });
     })
   })

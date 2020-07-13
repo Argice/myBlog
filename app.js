@@ -27,7 +27,7 @@ app.use(session({
   secret: 'my pro',//随便起名字
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 1000 * 60 * 5 }
+  cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }))
 
 // 登陆拦截

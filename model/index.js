@@ -10,7 +10,7 @@ const dbName = 'blog';
 // 封装数据库连接方法
 function connect(callback) {
     // 使用connect方法连接到服务
-    MongoClient.connect(url, { useNewUrlParser: true }, function (err, client) {
+    MongoClient.connect(url, function (err, client) {
         if (err) {
             console.log('数据库连接失败', err)
         } else {
