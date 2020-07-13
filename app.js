@@ -36,7 +36,7 @@ app.get('*', function (req, res, next) {
   var path = req.path
   if (path != '/login' && path != '/regist') {
     if (!username) {
-      // res.redirect('/login')
+      res.redirect('/login')
     }
   }
   next()

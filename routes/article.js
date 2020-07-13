@@ -3,6 +3,10 @@ var router = express.Router();
 var model = require('../model');
 
 
+var multiparty = require('multiparty');
+var fs = require('fs');
+
+
 // 新增、编辑
 router.post('/add', function (req, res, next) {
     var id = parseInt(req.body.id)
@@ -61,6 +65,27 @@ router.get('/delete', function (req, res, next) {
         })
     })
 })
+
+router.post('/upload', function(req, res, next) {
+    var form = new multiparty.Form()
+    form.parse(req, function(err, fields, files) {
+      if (err) {
+        console.log('上传失败', err);
+      } else {
+        console.log('文件列表', files)
+        var file = files.filedata[0]
+  
+        var rs = fs.createReadStream(file.path)
+        var newPath = '/uploads/' + file.originalFilename
+        var ws = fs.createWriteStream('./public' + newPath)
+        rs.pipe(ws)
+        ws.on('close', function() {
+          console.log('文件上传成功')
+          res.send({err: '', msg: newPath})
+        })
+      }
+    })
+  })
 
 
 module.exports = router;
