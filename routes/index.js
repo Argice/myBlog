@@ -21,6 +21,7 @@ router.get('/', function (req, res, next) {
       data.total = Math.ceil(docs.length / pageSize)
       // 2-查询当前页的文章列表
       model.connect(function (db) {
+        // http://mongodb.github.io/node-mongodb-native/3.5/api/AggregationCursor.html#sort
         // sort()  limit()  skip()
         db.collection('articles').find().sort({ _id: -1 }).limit(pageSize).skip((page - 1) * pageSize).toArray(function (err, docs2) {
           if (docs2.length == 0) {
@@ -52,7 +53,27 @@ router.get('/login', function (req, res, next) {
 // 渲染写文章
 router.get('/write', function (req, res, next) {
   var username = req.session.username || '';
-  res.render('write', { username })
+  var id = parseInt(req.query.id)
+  var page = req.query.page
+  var item = {
+    title: '',
+    content: ''
+  }
+  if (id) {  // 编辑
+    model.connect(function (db) {
+      db.collection('articles').findOne({ id: id }, function (err, docs) {
+        if (err) {
+          console.log('查询失败')
+        } else {
+          item = docs
+          item['page'] = page
+          res.render('write', { username, item })
+        }
+      })
+    })
+  } else {  // 新增
+    res.render('write', { username, item })
+  }
 })
 
 module.exports = router;
