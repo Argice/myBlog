@@ -16,5 +16,8 @@
     "mongodb": "^3.5.9",
     "morgan": "~1.9.1",
     "multiparty": "^4.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
   }
 }
